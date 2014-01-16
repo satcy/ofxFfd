@@ -33,10 +33,10 @@ public:
     void enableMouseEvent();
     void disableMouseEvent();
 
-    void setCp(int ix, int iy, int iz, ofVec3f vec);
+    void setControlPointPosition(int ix, int iy, int iz, ofVec3f vec);
 
     void setup(int numX = 1, int numY = 1, int numZ = 1);
-    void setControlPoint(int numX = 1, int numY = 1, int numZ = 1);
+    void setControlPointSize(int numX = 1, int numY = 1, int numZ = 1);
     void setMinMax(ofVec3f min_vec, ofVec3f max_vec);
     
     ofMesh deformMesh(ofMesh mesh);

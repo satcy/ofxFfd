@@ -10,7 +10,7 @@ void testApp::setup(){
     ofIcoSpherePrimitive prmtv(200, 2);
     mesh = prmtv.getMesh();
     ffd.setup(1, 2, 1);
-    rotates.reserve(3);
+    for ( int i=0; i<3; i++ ) rotates.push_back(0);
 }
 
 //--------------------------------------------------------------
@@ -20,7 +20,7 @@ void testApp::update(){
         for ( int j=0; j<4; j++ ) {
             int jj = j;
             if ( jj > 1 ) jj = 5 - jj;
-            ffd.setCp(j%2, i, int(j/2)%2, ofVec3f(cos(jj*(TWO_PI/4.0)+rotates[i])*141.42135623731, i*100 - 100, sin(jj*(TWO_PI/4.0)+rotates[i])*141.42135623731));
+            ffd.setControlPointPosition(j%2, i, int(j/2)%2, ofVec3f(cos(jj*(TWO_PI/4.0)+rotates[i])*141.42135623731, i*100 - 100, sin(jj*(TWO_PI/4.0)+rotates[i])*141.42135623731));
         }
     }
 }

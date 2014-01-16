@@ -106,7 +106,7 @@ void ofxFfd::disableMouseEvent(){
     ofUnregisterMouseEvents(this);
 }
 
-void ofxFfd::setCp(int ix, int iy, int iz, ofVec3f vec){
+void ofxFfd::setControlPointPosition(int ix, int iy, int iz, ofVec3f vec){
     if ( ix <= l && iy <= m && iz <= n )
         PCI[ix][iy][iz] = vec;
     else
@@ -115,7 +115,7 @@ void ofxFfd::setCp(int ix, int iy, int iz, ofVec3f vec){
 
 void ofxFfd::setup(int numX, int numY, int numZ){
     setMinMax(ofVec3f(-100, -100, -100), ofVec3f(100, 100, 100));
-    setControlPoint(numX, numY, numZ);
+    setControlPointSize(numX, numY, numZ);
 }
 
 void ofxFfd::setMinMax(ofVec3f minX, ofVec3f maxX)
@@ -134,13 +134,10 @@ void ofxFfd::setMinMax(ofVec3f minX, ofVec3f maxX)
     U_axis.z = axis.z;
 }
 
-void ofxFfd::setControlPoint(int numX, int numY, int numZ){
-    l = numX;
-    m = numY;
-    n = numZ;
-    if ( l > 5 ) l = 5;
-    if ( m > 5 ) m = 5;
-    if ( n > 5 ) n = 5;
+void ofxFfd::setControlPointSize(int numX, int numY, int numZ){
+    l = ofClamp(numX, 0, 9);
+    m = ofClamp(numY, 0, 9);
+    n = ofClamp(numZ, 0, 9);
     for(int i = 0; i <= l; i++){
         for(int j = 0; j <= m; j++){
             for (int k = 0; k <= n; k++){
