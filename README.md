@@ -1,4 +1,4 @@
-ofxFfd
+# ofxFfd is an addon for [openFrameworks](http://openframeworks.cc/)
 ======
 
 FreeFormDeformation
