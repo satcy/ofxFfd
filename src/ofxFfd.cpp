@@ -113,6 +113,13 @@ void ofxFfd::setControlPointPosition(int ix, int iy, int iz, ofVec3f vec){
         return;
 }
 
+void ofxFfd::setControlPointPosition(int idx, ofVec3f vec){
+    int ix = idx%(l+1);
+    int iy = int(idx/(l+1))%(m+1);
+    int iz = int(idx/((l+1)*(m+1)))%(n+1);
+    setControlPointPosition(ix, iy, iz, vec);
+}
+
 void ofxFfd::setup(int numX, int numY, int numZ){
     setMinMax(ofVec3f(-100, -100, -100), ofVec3f(100, 100, 100));
     setControlPointSize(numX, numY, numZ);
@@ -132,6 +139,22 @@ void ofxFfd::setMinMax(ofVec3f minX, ofVec3f maxX)
     
     U_axis.x = U_axis.y = 0;
     U_axis.z = axis.z;
+}
+
+const vector<ofVec3f> ofxFfd::getOriginalVertices(){
+    vector<ofVec3f> res;
+    for (int k = 0; k <= n; k++){
+        for(int j = 0; j <= m; j++){
+            for(int i = 0; i <= l; i++){
+                ofVec3f vec;
+                vec.x = origin.x + (((double)i/l) * axis.x);
+                vec.y = origin.y + (((double)j/m) * axis.y);
+                vec.z = origin.z + (((double)k/n) * axis.z);
+                res.push_back(vec);
+            }
+        }
+    }
+    return res;
 }
 
 void ofxFfd::setControlPointSize(int numX, int numY, int numZ){

@@ -34,13 +34,26 @@ public:
     void disableMouseEvent();
 
     void setControlPointPosition(int ix, int iy, int iz, ofVec3f vec);
+    void setControlPointPosition(int idx, ofVec3f vec);
 
     void setup(int numX = 1, int numY = 1, int numZ = 1);
     void setControlPointSize(int numX = 1, int numY = 1, int numZ = 1);
     void setMinMax(ofVec3f min_vec, ofVec3f max_vec);
     
+    const vector<ofVec3f> getOriginalVertices();
+    
     ofMesh deformMesh(ofMesh mesh);
     ofVec3f deformPoint(const ofVec3f & vec);
     
     void debugDraw();
+    
+    int getNumX(){
+        return l;
+    }
+    int getNumY(){
+        return m;
+    }
+    int getNumZ(){
+        return n;
+    }
 };
